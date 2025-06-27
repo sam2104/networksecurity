@@ -19,10 +19,7 @@ from networksecurity.logging.logger import logging
 
 class NetworkDataExtract():
     def __init__(self):
-        try:
-            pass
-        except Exception as e:
-            raise NetworkSecurityException(e,sys)
+        pass
         
     def csv_to_json_convertor(self,file_path):
         try:
@@ -39,7 +36,7 @@ class NetworkDataExtract():
             self.collection=collection
             self.records=records
 
-            self.mongo_client=pymongo.MongoClient(MONGO_DB_URL)
+            self.mongo_client = pymongo.MongoClient(MONGO_DB_URL, tlsCAFile=ca)
             self.database = self.mongo_client[self.database]
             
             self.collection=self.database[self.collection]
